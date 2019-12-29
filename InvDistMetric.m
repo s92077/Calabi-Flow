@@ -54,15 +54,18 @@ maxRv =  max(Rv, [], 'all');
 R     =  sparse([idx, idx, idx], F, Rv-maxRv, Fno, Vno);
 Rmin  =  min(R)' + maxRv;
 
-% W is the edge metric weight
+% W is the edge metric weight including compensation for boundary edge
 EW = @(F,D,R) ( D(:,1).^2 - Rmin(F(:,1)).^2 - Rmin(F(:,2)).^2 ) ...
     ./ (2 * Rmin(F(:,1)) .* Rmin(F(:,2)));
+FVB = ismember(F,VB);
+EB = FVB & FVB(:,[2,3,1]);
 W(:,1)=EW(F,D,R);
 W(:,2)=EW(F(:,[2,3,1]),D(:,[2,3,1]),R);
 W(:,3)=EW(F(:,[3,1,2]),D(:,[3,1,2]),R);
+W = W .* (1+EB);
 
 % L is the initial Inversive Distance Circle Packing Metric
 I = sparse(F, F(:,[2, 3, 1]), W, Vno, Vno);
 I = (I + I') / 2;
-I(sub2ind([Vno, Vno], VB, circshift(VB,1))) = I(sub2ind([Vno, Vno], VB, circshift(VB,1)))*2; 
-I(sub2ind([Vno, Vno], VB, circshift(VB,-1))) = I(sub2ind([Vno, Vno], VB, circshift(VB,-1)))*2;
+% I(sub2ind([Vno, Vno], VB, circshift(VB,1))) = I(sub2ind([Vno, Vno], VB, circshift(VB,1)))*2; 
+% I(sub2ind([Vno, Vno], VB, circshift(VB,-1))) = I(sub2ind([Vno, Vno], VB, circshift(VB,-1)))*2;
