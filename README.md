@@ -1,4 +1,4 @@
-# Ricci-Flow
+# Calabi-Flow
 This project is based on the following papers:
 * Zhang, Min, et al. "The unified discrete surface Ricci flow." Graphical Models 76.5 (2014): 321-339.
 * Jin, Miao, et al. "Discrete surface Ricci flow." IEEE Transactions on Visualization and Computer Graphics 14.5 (2008): 1030-1043.
