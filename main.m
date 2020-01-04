@@ -34,7 +34,7 @@ while true
 %     EW(sub2ind([Vno,Vno],1:Vno,1:Vno)) = EW(sub2ind([Vno,Vno],1:Vno,1:Vno))+1;
     U = U + EW\( Gbar - G );
 %     U = U + delta * EW * ( Gbar - G );
-    U = U - sum(U) / Vno;
+%     U = U - sum(U) / Vno;
     R = exp(U);
 %     VL = Embedding(F, V, VB, L);
 %     clf;
