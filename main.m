@@ -1,10 +1,6 @@
 close all;
 clear all;
-load('default.mat');
-F=Ho.F;
-V=Ho.V;
-% PlotMesh(M.F, M.V);
-% [F,V,extra] = read_obj('hemisphere.obj');
+[F,V,extra] = read_obj('hemisphere.obj');
 
 delta=0.00001;
 
